@@ -40,8 +40,8 @@ export const CartDrawer = () => {
             <div className="flex-1 overflow-y-auto px-5 py-3 space-y-3">
               {items.map((i) => (
                 <div key={i.product.id} className="flex gap-3 p-3 rounded-2xl bg-muted/40 border border-border">
-                  <div className="w-14 h-14 rounded-xl bg-accent grid place-items-center text-3xl shrink-0">
-                    {i.product.emoji}
+                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-muted shrink-0">
+                    <img src={i.product.image} alt={i.product.name} loading="lazy" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold leading-tight">{i.product.name}</div>

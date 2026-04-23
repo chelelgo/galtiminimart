@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Apple, Smartphone, Star } from "lucide-react";
-import appPromo from "@/assets/app-promo.jpg";
+import appPromo from "@/assets/app-lifestyle.jpg";
 
 export const AppDownload = () => (
   <section className="container py-8 md:py-12">
