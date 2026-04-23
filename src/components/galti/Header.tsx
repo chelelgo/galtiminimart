@@ -128,7 +128,9 @@ export const Header = () => {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-accent hover:text-accent-foreground transition-smooth text-sm"
                 >
-                  <span className="text-xl">{c.emoji}</span>
+                  <div className="w-9 h-9 rounded-lg overflow-hidden bg-muted shrink-0">
+                    <img src={c.image} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
+                  </div>
                   <span className="font-medium">{c.name}</span>
                 </a>
               ))}
