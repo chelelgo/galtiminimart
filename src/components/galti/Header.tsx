@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, MapPin, Search, ShoppingCart, User, Award, Menu, X } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Link, NavLink } from "react-router-dom";
+import { ChevronDown, MapPin, Search, ShoppingCart, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
-import { categories } from "@/data/products";
+import { useNavigate } from "react-router-dom";
 
-export const Header = () => {
+export const Header = ({ onSearch, onArea }: { onSearch: () => void; onArea: () => void }) => {
   const { count, setOpen } = useCart();
   const [location, setLocation] = useState<string>("Elgonview, Eldoret");
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const sync = () => {
@@ -22,122 +22,26 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40">
-      {/* Top brand bar */}
-      <div className="bg-primary text-primary-foreground">
-        <div className="container py-2.5 flex items-center gap-3 md:gap-4">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2 shrink-0 bg-background rounded-lg px-2.5 py-1.5 shadow-soft">
-            <div className="w-7 h-7 rounded-md bg-primary grid place-items-center text-primary-foreground font-display font-extrabold text-sm">
-              G
-            </div>
-            <span className="font-display font-extrabold text-primary text-sm md:text-base hidden sm:block">
-              Galti
-            </span>
-          </a>
-
-          {/* Location pill */}
-          <button className="hidden md:flex items-center gap-2 text-left shrink-0 hover:opacity-90 transition-smooth">
-            <MapPin className="w-4 h-4" />
-            <div className="leading-tight">
-              <div className="text-[11px] uppercase tracking-wide opacity-80 flex items-center gap-1">
-                Change Delivery Location <ChevronDown className="w-3 h-3" />
-              </div>
-              <div className="text-xs font-semibold truncate max-w-[180px]">{location}</div>
-            </div>
-          </button>
-
-          {/* Search */}
-          <div className="flex-1 relative max-w-2xl mx-auto">
-            <Input
-              placeholder="Search for Groceries…"
-              className="h-10 md:h-11 pl-4 pr-12 rounded-full bg-background text-foreground border-0 placeholder:text-muted-foreground"
-            />
-            <button className="absolute right-1 top-1/2 -translate-y-1/2 h-8 md:h-9 px-3 rounded-full bg-secondary text-secondary-foreground grid place-items-center hover:opacity-90 transition-smooth">
-              <Search className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Q-Points */}
-          <button className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/15 hover:bg-background/25 transition-smooth text-sm font-semibold">
-            <Award className="w-4 h-4 text-warning" />
-            <span>0 pts</span>
-          </button>
-
-          {/* Sign in */}
-          <button className="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-background text-primary font-semibold text-sm hover:bg-background/90 transition-smooth shadow-soft">
-            <User className="w-4 h-4" />
-            Sign In
-          </button>
-
-          {/* Cart */}
-          <button
-            onClick={() => setOpen(true)}
-            className="relative flex items-center gap-1.5 px-3 md:px-4 py-2 rounded-full bg-background text-primary font-semibold text-sm hover:bg-background/90 transition-smooth shadow-soft"
-            aria-label="Open cart"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            <span className="tabular-nums">{count}</span>
-            {count > 0 && (
-              <Badge className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full bg-warning text-warning-foreground border-2 border-primary text-[10px]">
-                !
-              </Badge>
-            )}
-          </button>
-        </div>
-
-        {/* Mobile location row */}
-        <div className="md:hidden border-t border-primary-foreground/15">
-          <button className="container py-2 flex items-center gap-2 text-xs">
-            <MapPin className="w-3.5 h-3.5" />
-            <span className="opacity-80">Deliver to</span>
-            <span className="font-semibold">{location}</span>
-            <ChevronDown className="w-3 h-3 opacity-80" />
-          </button>
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-xl">
+      <div className="container flex h-16 items-center gap-3 md:h-20 md:gap-8">
+        <Button variant="ghost" size="icon" aria-label="Open navigation" className="h-11 w-11 shrink-0 md:hidden" onClick={() => setMenuOpen((value) => !value)}>{menuOpen ? <X /> : <Menu />}</Button>
+        <Link to="/" className="flex shrink-0 items-center gap-1.5 text-2xl font-black tracking-tighter md:text-3xl" aria-label="Galti home">GALTI<span className="h-2.5 w-2.5 bg-accent" /></Link>
+        <nav className="hidden items-center gap-5 lg:flex">
+          {[{ label: "Shop", to: "/shop" }, { label: "Fresh", to: "/category/fresh" }, { label: "Deals", to: "/deals" }, { label: "New In", to: "/shop?sort=new" }, { label: "About", to: "/#about" }, { label: "Help", to: "/#help" }].map((item) => <NavLink key={item.label} to={item.to} className={({ isActive }) => `link-underline py-2 text-xs font-bold uppercase tracking-wider transition-colors hover:text-accent ${isActive ? "text-accent" : "text-foreground"}`}>{item.label}</NavLink>)}
+        </nav>
+        <div className="ml-auto flex min-w-0 items-center gap-1 sm:gap-2">
+          <Button variant="ghost" className="hidden h-11 max-w-48 items-center gap-2 px-2 text-left sm:flex" onClick={onArea} aria-label={`Change delivery area, current area ${location}`}>
+            <MapPin className="h-4 w-4 shrink-0" /><span className="min-w-0"><span className="block text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Deliver to</span><span className="block truncate text-xs font-semibold">{location.split(",")[0]}</span></span><ChevronDown className="h-3 w-3 shrink-0" />
+          </Button>
+          <Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Search groceries" onClick={onSearch}><Search /></Button>
+          <Button variant="ghost" size="icon" className="hidden h-11 w-11 sm:inline-flex" aria-label="Account and orders" onClick={() => navigate("/orders")}><User /></Button>
+          <Button variant="ghost" size="icon" className="relative h-11 w-11" aria-label={`Open basket, ${count} items`} onClick={() => setOpen(true)}><ShoppingCart />{count > 0 && <span className="absolute right-0 top-0 grid h-5 min-w-5 place-items-center bg-accent px-1 text-[10px] font-bold text-accent-foreground">{count}</span>}</Button>
         </div>
       </div>
-
-      {/* Secondary nav */}
-      <div className="bg-background border-b border-border shadow-soft relative">
-        <div className="container flex items-center gap-2">
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            className="flex items-center gap-2 py-3 pr-4 font-semibold text-sm border-r border-border"
-          >
-            {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            All Categories
-          </button>
-          <a href="#" className="px-4 py-3 text-sm font-medium hover:text-primary transition-smooth">About Us</a>
-          <a href="#" className="hidden sm:block px-4 py-3 text-sm font-medium hover:text-primary transition-smooth">Today's Deals</a>
-          <a href="#" className="hidden sm:block px-4 py-3 text-sm font-medium hover:text-primary transition-smooth">New Arrivals</a>
-          <a href="#" className="hidden md:block px-4 py-3 text-sm font-medium hover:text-primary transition-smooth">Help & Support</a>
-          <div className="ml-auto hidden md:flex items-center gap-1 py-3 text-xs text-secondary font-semibold">
-            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-            Delivering in 60 mins
-          </div>
-        </div>
-
-        {/* Mega menu */}
-        {menuOpen && (
-          <div className="absolute left-0 right-0 top-full bg-background border-b border-border shadow-elevated animate-fade-in-up z-30">
-            <div className="container py-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1">
-              {categories.map((c) => (
-                <a
-                  key={c.id}
-                  href="#"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-accent hover:text-accent-foreground transition-smooth text-sm"
-                >
-                  <div className="w-9 h-9 rounded-lg overflow-hidden bg-muted shrink-0">
-                    <img src={c.image} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
-                  </div>
-                  <span className="font-medium">{c.name}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+      <div className="border-t border-border sm:hidden">
+        <Button variant="ghost" className="container h-10 justify-start gap-2 text-xs" onClick={onArea}><MapPin className="h-4 w-4" />Deliver to <span className="font-bold">{location.split(",")[0]}</span><ChevronDown className="h-3 w-3" /></Button>
       </div>
+      {menuOpen && <nav className="absolute inset-x-0 top-full grid grid-cols-2 border-b border-border bg-background p-4 shadow-lg md:hidden">{[{ label: "Shop", to: "/shop" }, { label: "Fresh", to: "/category/fresh" }, { label: "Deals", to: "/deals" }, { label: "New In", to: "/shop?sort=new" }, { label: "Orders", to: "/orders" }, { label: "Wishlist", to: "/wishlist" }].map((item) => <Link key={item.label} to={item.to} onClick={() => setMenuOpen(false)} className="border-b border-border py-4 text-xs font-bold uppercase tracking-wider">{item.label}</Link>)}</nav>}
     </header>
   );
 };

@@ -2,95 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Galti Mini-Mart Design System
-   Fresh, local, trustworthy. All colors HSL.
-*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 12%;
-
+    --foreground: 0 0% 5%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 12%;
-
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 12%;
-
-    /* Brand green — fresh, trustworthy supermarket primary (Naivas-inspired) */
-    --primary: 158 72% 24%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 158 60% 36%;
-    --primary-dark: 158 80% 18%;
-
-    /* Brand orange — energetic CTA */
-    --secondary: 22 92% 52%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 42%;
-
-    --accent: 158 50% 95%;
-    --accent-foreground: 158 72% 24%;
-
-    --destructive: 358 78% 52%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 142 76% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --success: 142 65% 38%;
-    --success-foreground: 0 0% 100%;
-
     --warning: 38 95% 55%;
-    --warning-foreground: 30 30% 15%;
-
-    --border: 0 0% 91%;
-    --input: 0 0% 92%;
-    --ring: 158 72% 24%;
-
-    --radius: 0.75rem;
-
-    --gradient-hero: linear-gradient(135deg, hsl(158 72% 24%) 0%, hsl(158 60% 36%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(22 92% 52%) 0%, hsl(35 95% 55%) 100%);
-    --gradient-fresh: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(158 50% 96%) 100%);
-    --gradient-banner: linear-gradient(90deg, hsl(158 72% 24%) 0%, hsl(158 60% 36%) 100%);
-
-    --shadow-soft: 0 2px 12px -2px hsl(0 0% 0% / 0.06);
-    --shadow-card: 0 4px 16px -6px hsl(0 0% 0% / 0.08);
-    --shadow-elevated: 0 12px 40px -10px hsl(158 72% 24% / 0.22);
-    --shadow-cta: 0 8px 24px -6px hsl(22 92% 52% / 0.45);
-
-    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-
+    --warning-foreground: 0 0% 5%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 142 76% 45%;
+    --radius: 0.25rem;
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 5%;
+    --sidebar-primary: 0 0% 5%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 5%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 142 76% 45%;
   }
 
   .dark {
-    --background: 150 20% 8%;
-    --foreground: 40 33% 96%;
-    --card: 150 18% 11%;
-    --card-foreground: 40 33% 96%;
-    --popover: 150 18% 11%;
-    --popover-foreground: 40 33% 96%;
-    --primary: 142 60% 50%;
-    --primary-foreground: 150 20% 8%;
-    --secondary: 22 95% 58%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 150 12% 16%;
-    --muted-foreground: 150 8% 65%;
-    --accent: 150 15% 18%;
-    --accent-foreground: 142 60% 70%;
-    --destructive: 0 70% 50%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 142 76% 45%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 150 12% 18%;
-    --input: 150 12% 18%;
-    --ring: 142 60% 50%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 142 76% 45%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 142 76% 45%;
   }
 }
 
@@ -102,24 +75,29 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "cv11";
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4 {
-    @apply font-bold tracking-tight;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold uppercase tracking-tighter;
   }
 }
 
 @layer utilities {
-  .gradient-hero { background: var(--gradient-hero); }
-  .gradient-cta { background: var(--gradient-cta); }
-  .gradient-fresh { background: var(--gradient-fresh); }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-card { box-shadow: var(--shadow-card); }
-  .shadow-elevated { box-shadow: var(--shadow-elevated); }
-  .shadow-cta { box-shadow: var(--shadow-cta); }
-  .transition-smooth { transition: var(--transition-smooth); }
-  .transition-bounce { transition: var(--transition-bounce); }
-
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .link-underline { position: relative; }
+  .link-underline::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; background: hsl(var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+  .link-underline:hover::after, .link-underline:focus-visible::after { transform: scaleX(1); }
+  .motion-rise { animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes slide-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .announcement-bar span { display: block; }
+  @media (max-width: 639px) {
+    .announcement-bar span { width: max-content; margin-inline: auto; animation: announcement-marquee 18s linear infinite; }
+    @keyframes announcement-marquee { to { transform: translateX(-8%); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 }

@@ -1,0 +1,3 @@
+- [ ] Restore the application with the Lace-inspired design system and shared shell.
+- [ ] Complete functional product browsing, category, search, wishlist, cart, and local checkout/order flows.
+- [ ] Verify basket rules, preview behavior, mobile layout, and clean diagnostics; commit the rebuild.
